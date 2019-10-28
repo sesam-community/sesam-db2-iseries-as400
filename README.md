@@ -38,18 +38,16 @@ this service works on port 8080 and has one endpoint GET `/datasets/<TABLE NAME>
   "source": {
     "type": "json",
     "system": "db2-test",
-    "url": "/datasets/<TABLE NAME>/entities"
+    "url": "/datasets/<TABLE NAME>/entities?id=<PRIMARY KEY FIELD NAME>&lmdt=<LAST MODIFIED FIELD NAME>"
   },
   "transform": {
     "type": "dtl",
     "rules": {
       "default": [
-        ["copy", "*"],
-        ["add", "_id",
-          ["string", "_S.<PRIMARY KEY FIELD>"]
-        ]
+        ["copy", "*"]
       ]
     }
   }
 }
 ```
+# sesam-db2-iseries-as400-source

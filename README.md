@@ -2,6 +2,7 @@
 IBM DB2 iSeries AS400 source for Sesam.io powered applications
 
 this service works on port 8080 and has one endpoint GET `/datasets/<TABLE NAME>/entities`
+with parameters id=<PRIMARY KEY FIELD NAME> & lmdt=<LAST MODIFIED FIELD NAME>
 
 ### environment variables needed
 * **DB2_HOSTNAME** - hostname or IP to DB2 iSeries AS400 instance 

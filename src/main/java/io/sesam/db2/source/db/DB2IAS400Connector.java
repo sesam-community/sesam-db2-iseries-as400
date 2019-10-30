@@ -28,16 +28,16 @@ public class DB2IAS400Connector {
         this.user = db2Config.getDbUser();
         this.password = db2Config.getDbPassword();
     }
-
+    
     public DB2IAS400Connector(String host, String dbName, String user, String password) {
         this.host = host;
         this.user = user;
         this.password = password;
         this.dbName = dbName;
     }
-
+    
     private Connection connect() throws ClassNotFoundException, SQLException {
-
+        
         Class.forName(DRIVER_CLASS);
         String connUrl = String.format(URL_TEMPLATE, host, dbName, user, password);
         return DriverManager.getConnection(connUrl);
@@ -55,9 +55,13 @@ public class DB2IAS400Connector {
      * @throws SQLException if any SQL exception occurs during connection
      */
     public Table fetchTable(String tableName, String since, String id, String lmdt) throws ClassNotFoundException, SQLException {
+        String dbCombined = "";
         if (tableName.matches("%[^_A-Z0-9@$#]%")) {
             throw new IllegalArgumentException(String.format("bad table name %s", tableName));
+        } else {
+            dbCombined = dbName + "." + tableName;
+            //new Stringbuilder().append(dbName).append(".").append(this.tableName).toString();
         }
-        return new Table(tableName, since, id, lmdt, this.connect());
+        return new Table(dbCombined, since, id, lmdt, this.connect());
     }
 }

@@ -1,4 +1,5 @@
 {
     "problems.decorations.enabled": false,
-    "java.validate.enable": false
+    "java.validate.enable": false,
+    "java.dependency.packagePresentation": "hierarchical"
 }

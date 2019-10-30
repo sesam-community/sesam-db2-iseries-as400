@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import io.sesam.db2.source.db.DB2IAS400ConnectorConfiguration;
 
 import com.ibm.as400.access.AS400JDBCResultSet;
 import com.ibm.as400.access.AS400JDBCResultSetMetaData;
+
+import org.springframework.beans.factory.annotation.Autowired;
 /**
  *
  * @author Timur Samkharadze
@@ -28,19 +29,10 @@ public class Table implements AutoCloseable {
     private int lastBatchSize;
     private AS400JDBCResultSetMetaData metaData;
 
-    protected Table(String tableName, String since, String id, String lmdt, Connection conn) throws SQLException {
-        
+    protected Table(String dbCombined, String since, String id, String lmdt, Connection conn) throws SQLException {
         this.conn = conn;
-        this.stmtStr = String.format("SELECT %s AS \"_id\", %s AS \"_updated\", M3FDBTST.%s.* FROM %s WHERE %s >= %s ORDER BY %s LIMIT %s OFFSET ?", id, lmdt, tableName.strip(), tableName.strip(), lmdt, since, lmdt, Table.BATCH_SIZE);
-        
-        // Hardcoded for M3FDBTST DB.
-        // if (tableName.equals("OOHEAD")) {
-        //     this.stmtStr = String.format("SELECT OAORNO AS \"_id\", OALMDT AS \"_updated\", M3FDBTST.OOHEAD.* FROM %s WHERE OALMDT >= %s ORDER BY OALMDT LIMIT %s OFFSET ?", tableName.strip(), since, Table.BATCH_SIZE); // OOHEAD TABLE
-        // }else if(tableName.equals("MHDISH")){
-        //     this.stmtStr = String.format("SELECT OQRIDN AS \"_id\", OQLMDT AS \"_updated\", M3FDBTST.MHDISH.* FROM %s WHERE OQLMDT >= %s ORDER BY OQLMDT LIMIT %s OFFSET ?", tableName.strip(), since, Table.BATCH_SIZE); //MHDISH TABLE
-        // }else{
-        //     this.stmtStr = String.format("SELECT * FROM %s LIMIT %s OFFSET ?", tableName.strip(), Table.BATCH_SIZE);
-        // }
+
+        this.stmtStr = String.format("SELECT %s AS \"_id\", %s AS \"_updated\", %s.* FROM %s WHERE %s >= %s ORDER BY %s LIMIT %s OFFSET ?", id, lmdt, dbCombined, dbCombined,  lmdt, since, lmdt, Table.BATCH_SIZE);
 
         this.offset = 0; 
         this.lastBatchSize = Table.BATCH_SIZE;
@@ -50,7 +42,7 @@ public class Table implements AutoCloseable {
         return !(this.lastBatchSize < Table.BATCH_SIZE);
     }
 
-    /** espenplatou/m3:OOHEAD works... 
+    /**
      * Method to fetch next batch of data from current table
      *
      * @return

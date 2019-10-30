@@ -52,7 +52,4 @@ public class DB2IAS400ConnectorConfiguration {
     public void setDbPassword(String dbPassword) {
         this.dbPassword = dbPassword;
     }
-    
-    
-
 }

@@ -30,9 +30,9 @@ public class DB2Controller {
     @Autowired
     private DB2IAS400Connector dbConnector;
     private static final ObjectMapper MAPPER = new ObjectMapper();
-
+    
     private static final Logger LOG = LoggerFactory.getLogger(DB2Controller.class);
-
+    
     @RequestMapping(value = {"/datasets/{table}/entities"}, method = {RequestMethod.GET})
     public void getTableData(@PathVariable String table, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Table tableObj;
@@ -91,6 +91,7 @@ public class DB2Controller {
         writer.flush();
         try {
             tableObj.close();
+            //LOG.info("Successfully closed DB connection to {}", dbName);
         } catch (SQLException ex) {
             LOG.error("Couldn't close DB connection due to", ex);
         }

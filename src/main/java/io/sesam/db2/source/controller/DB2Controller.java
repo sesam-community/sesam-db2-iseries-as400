@@ -41,18 +41,18 @@ public class DB2Controller {
         if (request.getParameter("lmdt") == null || request.getParameter("id") == null){
             id = "";
             lmdt = "";
-            LOG.error("parameters id or lmdt is not set in the url. please add it to your pipe and try again.");
+            LOG.error("Parameters id or lmdt is not set in the url. Please add it to your pipe and try again.");
         }else{
             id = request.getParameter("id");
             lmdt = request.getParameter("lmdt");
-            LOG.info("id = {} & lmdt = {}", id, lmdt);       
+            LOG.info("Primary key field = {} & Last modified field = {}", id, lmdt);       
         }
         long rowCounter = 0;
         String since = "";
         LOG.info("Serving request to fetch data from {} table with id: {}", table, id);
         if (request.getParameter("since") != null){
             since = request.getParameter("since");
-            LOG.info("Since value: {} , is fetched from Sesam", since);
+            LOG.info("Since value is fetched from Sesam, value: {}", since);
         }else{
             since = "20180101";
             LOG.info("Since value is not set, setting 20180101");

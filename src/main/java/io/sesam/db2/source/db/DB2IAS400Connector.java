@@ -60,7 +60,6 @@ public class DB2IAS400Connector {
             throw new IllegalArgumentException(String.format("bad table name %s", tableName));
         } else {
             dbCombined = dbName + "." + tableName;
-            //new Stringbuilder().append(dbName).append(".").append(this.tableName).toString();
         }
         return new Table(dbCombined, since, id, lmdt, this.connect());
     }

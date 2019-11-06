@@ -91,10 +91,10 @@ public class DB2Controller {
         writer.flush();
         try {
             tableObj.close();
-            //LOG.info("Successfully closed DB connection to {}", dbName);
+            LOG.info("Sucessfully processed {} rows", rowCounter);
+            LOG.info("Successfully closed DB connection");
         } catch (SQLException ex) {
             LOG.error("Couldn't close DB connection due to", ex);
         }
-        LOG.info("Sucessfully processed {} rows", rowCounter);
     }
 }

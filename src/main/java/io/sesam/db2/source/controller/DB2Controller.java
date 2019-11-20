@@ -38,6 +38,7 @@ public class DB2Controller {
         Table tableObj;
         String id = "";
         String lmdt = "";
+        LOG.info("Serving request to fetch data from {} table", table);
         if (request.getParameter("lmdt") == null || request.getParameter("id") == null){
             id = "";
             lmdt = "";
@@ -49,7 +50,6 @@ public class DB2Controller {
         }
         long rowCounter = 0;
         String since = "";
-        LOG.info("Serving request to fetch data from {} table with id: {}", table, id);
         if (request.getParameter("since") != null){
             since = request.getParameter("since");
             LOG.info("Since value is fetched from Sesam, value: {}", since);

@@ -1,6 +1,8 @@
 # db2-iseries-as400
 IBM DB2 iSeries AS400 source for Sesam.io powered applications
 
+Supports fetching data from DB2 iSeries. 
+
 this service works on port 8080 and has one endpoint GET `/datasets/<TABLE NAME>/entities`
 with parameters id=<PRIMARY KEY FIELD NAME> & lmdt=<LAST MODIFIED FIELD NAME>
 

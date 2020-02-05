@@ -1,4 +1,4 @@
-# db2-iseries-as400-source
+# db2-iseries-as400
 IBM DB2 iSeries AS400 source for Sesam.io powered applications
 
 this service works on port 8080 and has one endpoint GET `/datasets/<TABLE NAME>/entities`
@@ -22,7 +22,7 @@ with parameters id=<PRIMARY KEY FIELD NAME> & lmdt=<LAST MODIFIED FIELD NAME>
       "DB2_PASSWORD": "<DB PASSWORD>",
       "DB2_USERNAME": "<DB USER>"
     },
-    "image": "sesamcommunity/db2-iseries-as400-source:<VERSION>",
+    "image": "sesamcommunity/db2-iseries-as400:<VERSION>",
     "memory": 512,
     "port": 8080
   }
@@ -51,4 +51,4 @@ with parameters id=<PRIMARY KEY FIELD NAME> & lmdt=<LAST MODIFIED FIELD NAME>
   }
 }
 ```
-# db2-iseries-as400-source
+# db2-iseries-as400

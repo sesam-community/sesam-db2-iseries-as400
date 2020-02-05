@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class Table implements AutoCloseable {
 
-    private static final int BATCH_SIZE = 50_000;
+    private static final int BATCH_SIZE = 2_000;
 
     private final Connection conn;
     private final String stmtStr;

@@ -54,8 +54,8 @@ public class DB2Controller {
             since = request.getParameter("since");
             LOG.info("Since value is fetched from Sesam, value: {}", since);
         }else{
-            since = "20180101";
-            LOG.info("Since value is not set, setting 20180101");
+            since = "0";
+            LOG.info("Since value is not set, setting since = 0");
         }
         try {
             tableObj = dbConnector.fetchTable(table, since, id, lmdt);
